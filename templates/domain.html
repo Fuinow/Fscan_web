@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script type="text/javascript">
+  function scan(root_domain,domain,type){
+        var url = "/scan/" + root_domain + "/" + domain + "/" + type
+        xmlhttp=new XMLHttpRequest();
+        xmlhttp.open("GET",url,true);
+        xmlhttp.send();
+        history.go(0)
+  }
+
+</script>
+          <h2 class="sub-header">Section title</h2>
+          <div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>domain</th>
+                  <th>title</th>
+                  <th>state</th>
+                  <th>scanner</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for  domain in domains%}
+                <tr>
+                  <td>{{ domain['num'] }}</td>
+                  <td>{{ domain['domain'] }}</td>
+                  <td>{{ domain['title'] }}</td>
+                  <td>
+					<span class="label label-{{ domain.get('state')[0] }}">Dir</span>
+                  	<span class="label label-{{ domain.get('state')[1] }}">Port</span>
+                  	<span class="label label-{{ domain.get('state')[2] }}">Finger</span>
+                  	<span class="label label-{{ domain.get('state')[3] }}">Poc</span>
+                  </td>
+                  <td>
+	                  	<div class="btn-group btn-group-xs">
+							 <button type="button" class="btn btn-default">Scan</button>
+							 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					 	    <span class="caret"></span>
+						     <span class="sr-only">Toggle Dropdown</span>
+						  </button>
+					  <ul class="dropdown-menu">
+					    <li><a href="javascript:void(0);" onclick="scan('{{ root_domain }}','{{ domain['domain'] }}','dir')">Dirscan</a></li>
+					    <li><a href="javascript:void(0);" onclick="scan('{{ root_domain }}','{{ domain['domain'] }}','port')">Portscan</a></li>
+					    <li><a href="javascript:void(0);" onclick="scan('{{ root_domain }}','{{ domain['domain'] }}','finger')">Finger</a></li>
+					    <li><a href="javascript:void(0);" onclick="scan('{{ root_domain }}','{{ domain['domain'] }}','poc')">Poc</a></li>
+					  </ul>
+						</div>
+						<div class="btn-group btn-group-xs">
+							<button type="button" class="btn btn-primary" onclick="location.href='/info/{{ root_domain }}/{{ domain['domain'] }}'">info</button>
+						</div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+{% endblock %}

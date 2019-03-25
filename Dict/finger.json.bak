@@ -1,0 +1,31 @@
+[
+{
+"name" : "my_host",
+"request": {
+              "url" : "/tt.xml",
+              "method" : "GET",
+              "headers": {},
+              "data": {}
+          },
+"response": {
+              "code": 200,
+              "html": "linked",
+              "headers": {}
+			}
+},
+
+{
+"name" : "thinkphp",
+"request": {
+              "url" : "/",
+              "method" : "GET",
+              "headers": {},
+              "data": {}
+			},
+"response": {
+              "code": 200,
+              "html": "",
+              "headers": "X-Powered-By: ThinkPHP"
+			}
+}
+]

@@ -1,0 +1,76 @@
+{% extends "base.html"%}
+
+{%  block content %}
+
+
+<div class="col-md-6">
+
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      IP
+    </div>
+    <div class="panel-body">{{ ip }}</div>
+  </div>
+  </div>
+
+<div class="col-md-12">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Dir scan
+  </div>
+  <div class="panel-body">
+      {% if _dir %}
+      {% for dir in _dir %}
+        <p>{{ dir }}</p>
+      {% endfor %}
+      {% endif %}
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-6">
+
+  <div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Port scan
+    </div>
+    <div class="panel-body">
+  {% for port in ports %}
+    <span class="label label-success">{{ port["port"] }}   {{ port["service"] }}</span>
+  {% endfor %}
+  </div>
+  </div>
+  </div>
+
+  <div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Finger 
+    </div>
+    <div class="panel-body">{{ finger }}</div>
+  </div>
+  </div>
+
+  <div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Poc scan
+    </div>
+    <div class="panel-body">{{ poc }}</div>
+  </div>
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="col-md-12">
+<form role="form">
+  <div class="form-group">
+    <label for="name">description</label>
+    <textarea class="form-control" rows="3"></textarea>
+  </div>
+</form>
+</div>
+</div>
+{% endblock %}

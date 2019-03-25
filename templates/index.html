@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<dir class="raw">
+{% for root_domain in root_domains %}
+	<div class="col-md-6">
+		<div class="thumbnail">
+     		<div class="caption">
+        		<a href="/domain/{{ root_domain }}">
+        			<h3>{{ root_domain }}</h3></a>
+        		<p>Num: 100</p>
+      		</div>
+      	 </div>
+	</div>
+{% endfor %}
+</dir>
+{% endblock %}
